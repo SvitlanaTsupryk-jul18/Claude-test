@@ -1,0 +1,175 @@
+/* ── Pagination, Breadscrambs ────────── */
+/*
+
+1. Pagination
+2. Breadcrambs
+
+*/
+
+/* 1. Pagination */
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 3.2rem 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  line-height: 2.2rem;
+  font-weight: 700;
+
+  a,
+  button,
+  .extra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    background: none;
+    cursor: pointer;
+  }
+
+  .pagination-numbers {
+    display: flex;
+    gap: 8px;
+
+    a,
+    button,
+    .extra {
+      width: 44px;
+      height: 44px;
+      border: 2px solid transparent;
+      border-radius: 12px;
+    }
+
+    a.current,
+    button.current,
+    a:hover:not(:disabled),
+    button:hover:not(:disabled) {
+      color: var(--color-main);
+      border-color: var(--color-main);
+    }
+  }
+
+  .prev-next {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    &:hover {
+      color: var(--color-main);
+
+      svg path {
+        fill: var(--color-main);
+      }
+    }
+
+    span {
+      display: none;
+    }
+  }
+}
+
+.pagination-numbers .extra {
+  border: none;
+  color: var(--color-main);
+  cursor: default;
+}
+
+.prev-next:disabled,
+.prev-next.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+@media (min-width: 768px) {
+  .pagination {
+    margin: 6.4rem 0;
+
+    &:empty {
+      margin-top: 0;
+    }
+
+    .prev-next span {
+      display: inline-block;
+      font-size: 1.4rem;
+      padding: 0 8px;
+      color: var(--color-font);
+
+      &:hover {
+        color: var(--color-main);
+      }
+    }
+  }
+}
+
+/* 2. Breadcrambs */
+
+.breadcrumb {
+  display: flex;
+  list-style: none;
+  font-family: var(--font-title);
+  margin: 16px 0;
+  font-size: 1.3rem;
+}
+
+.breadcrumb li + li::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 1.2rem;
+  background-image: url("../images/bread-divider.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+.breadcrumb a:hover {
+  /* font-weight: 700; */
+  text-decoration: underline;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: 1.5px; /* 11.538% */
+  text-underline-offset: 12.5%; /* 1.625px */
+  text-underline-position: from-font;
+}
+
+.breadcrumb-item-current {
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .post-template .breadcrumb-item-current {
+    display: none;
+  }
+
+  .breadcrumb {
+    margin: 22px 0;
+  }
+
+  .breadcrumb li + li::before {
+    margin: 0 0.6rem;
+  }
+}
+
+/* Анімація для нових карток */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.post-fade-in {
+  animation: fadeInUp 0.6s ease forwards;
+}

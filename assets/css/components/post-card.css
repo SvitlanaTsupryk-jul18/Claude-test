@@ -1,0 +1,321 @@
+/* Post Card
+/* ---------------------------------------------------------- 
+
+1. Post card
+2. Hero section index page first post card
+3. Hero section first screen posts exclude the first one
+4. Trend posts cards mini 
+
+*/
+
+/* 1. Post card */
+
+.post-card {
+  margin-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: var(--border-divider);
+  a {
+    color: inherit;
+  }
+}
+
+div .post-card:last-child {
+  padding-bottom: 48px;
+}
+
+.line .post-card {
+  margin-top: 32px;
+  padding-bottom: 32px;
+}
+
+.post-card:first-child {
+  margin-top: 0;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
+}
+
+.post-card-img {
+  position: relative;
+  flex-shrink: 0;
+  aspect-ratio: 7 / 5;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f0f0f0;
+}
+
+.post-card-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.post-card-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-right: 1.6rem;
+}
+
+.post-card-title {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.3;
+  padding-bottom: 1.6rem;
+  letter-spacing: -3%;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-main);
+    text-decoration: underline;
+  }
+}
+
+.post-card-meta {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  line-height: 1.4rem;
+  letter-spacing: 7%;
+  font-weight: 500;
+  text-transform: uppercase;
+  /* margin-top: auto; */
+}
+
+.post-card-author {
+  display: block;
+  padding-bottom: 8px;
+}
+
+.post-card-date {
+  color: var(--color-grey);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-bottom: -4px;
+  }
+}
+
+@media (min-width: 768px) {
+  .post-card:not(.list .post-card) {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .post-card {
+    margin-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .post-card:not(.list .post-card) {
+    padding-bottom: 0;
+  }
+
+  .post-card-date svg {
+    width: 20px;
+    height: 20px;
+    margin-bottom: -6px;
+  }
+
+  .line .post-card {
+    border: none;
+  }
+
+  .post-card-title {
+    font-size: 2rem;
+  }
+}
+
+/* 2. Hero section index page first post */
+
+.post-card-first {
+  height: 600px;
+  position: relative;
+  padding-bottom: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-top: 0;
+
+  &:hover {
+    * {
+      color: var(--color-white);
+    }
+
+    .post-card-title {
+      color: var(--color-white);
+      text-decoration: underline;
+    }
+  }
+
+  .post-card-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    aspect-ratio: 3 / 2;
+  }
+
+  .post-card-img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(22, 27, 37, 0) 0%,
+        rgba(22, 27, 37, 0) 52%,
+        rgba(22, 27, 37, 0.64) 64%,
+        #161b25 80%
+      )
+      rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .post-card-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: var(--color-white);
+    z-index: 1;
+    padding: 48px 24px;
+    height: initial;
+  }
+
+  .post-card-tag {
+    background-color: var(--color-white);
+    color: var(--color-primary-text);
+  }
+
+  .post-card-title {
+    font-size: 2.2rem;
+    color: var(--color-white);
+    padding-bottom: 1.2rem;
+  }
+
+  .post-card-excerpt {
+    font-family: var(--font-title);
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin-bottom: 1.6rem;
+    display: -webkit-box;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.12px;
+  }
+
+  .post-card-date {
+    color: var(--color-grey-light);
+  }
+}
+
+@media (min-width: 1024px) {
+  .post-card-first {
+    height: 720px;
+
+    .post-card-info {
+      padding: 48px;
+    }
+
+    .post-card-title {
+      font-size: 2.6rem;
+    }
+
+    .post-card-excerpt {
+      font-size: 1.6rem;
+      font-weight: 300;
+      line-height: 1.5;
+      letter-spacing: 0.16px;
+    }
+  }
+}
+
+/* 3. Hero section first screen posts exclude the first one */
+
+.list .post-card {
+  flex-direction: row;
+  gap: clamp(16px, 4vw, 32px);
+
+  .post-card-img {
+    position: relative;
+    flex-shrink: 0;
+    border-radius: clamp(8px, 0.5px + 2.5vw, 24px);
+    width: clamp(64px, 15vw, 120px);
+    height: clamp(64px, 15vw, 120px);
+    margin-bottom: 0;
+  }
+}
+
+.hero .list .post-card-img {
+  width: clamp(64px, 15vw, 170px);
+  height: clamp(64px, 15vw, 170px);
+}
+
+.hero-inner > div:last-child .post-card:first-of-type {
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .hero-inner > div:last-child {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-inner > div:last-child .post-card:first-of-type {
+    margin-top: 0;
+  }
+
+  .hero-inner > div:last-child .post-card:last-of-type {
+    border: none;
+  }
+}
+
+/* 4. Trend posts mini cards */
+
+.post-card-mini .post-card-info {
+  height: initial;
+}
+
+@media (min-width: 1024px) {
+  .post-card-mini {
+    padding-bottom: 0;
+  }
+
+  .post-card-mini:not(:first-of-type) {
+    position: relative;
+    padding-left: 28px;
+  }
+
+  .post-card-mini:not(:first-of-type):before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 1px;
+    background-color: var(--color-grey-line);
+  }
+}

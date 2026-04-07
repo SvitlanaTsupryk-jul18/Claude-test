@@ -1,0 +1,60 @@
+{{!< default}}{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+
+<main class="gh-main">
+  {{> "components/hero"}}
+
+  {{>"components/trend-posts"}}
+
+  {{#get "posts" filter="tag:khmarna-kasa+visibility:public" limit="4" include="tags,authors"}}
+  {{#if posts}}
+  {{> "components/post-list" posts=posts title="Хмарна каса" tagUrl ="khmarna-kasa"}}
+  {{/if}}
+  {{/get}}
+
+  {{> "banners/banner"}}
+
+  {{#get "posts" filter="tag:fiskalizatsiia+visibility:public" limit="4" include="tags,authors"}}
+  {{#if posts}}
+  {{> "components/post-list" posts=posts title="Фіскалізація" tagUrl ="fiskalizatsiia"}}
+  {{/if}}
+  {{/get}}
+
+  {{#get "posts" filter="tag:video+visibility:public" limit="4" include="tags,authors"}}
+  {{#if posts}}
+  <div class="video">
+    {{> "components/post-list" posts=posts title="Нові відео" tagUrl ="video" isVideo=true}}
+  </div>
+  {{/if}}
+  {{/get}}
+
+  <div class="gh-topic-list">
+    {{> "components/post-list" posts=posts postListStyle="list" isIndex ="true" imageSizes="240px" title="Найсвіжіше"}}
+  </div>
+
+  {{> "cta"}}
+</main>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "{{@site.title}}",
+    "url": "{{@site.url}}/",
+    "logo": "{{@site.logo}}",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "0800 330 676",
+      "contactType": "customer service",
+      "areaServed": "UA"
+    },
+    "sameAs": [
+      "https://www.facebook.com/CheckboxUkraine",
+      "https://www.instagram.com/checkbox.ua/",
+      "https://www.youtube.com/channel/UCTEkKa-Z2DreSefLoMl97JA"
+    ],
+    "blog": {
+      "@type": "Blog",
+      "url": "{{@site.url}}/blog/"
+    }
+  }
+</script>

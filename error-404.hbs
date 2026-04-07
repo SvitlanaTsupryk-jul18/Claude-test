@@ -1,0 +1,19 @@
+{{!< default}}
+
+<main class="site-main error-page">
+    <main>
+        <p>404 — Сторінку не знайдено</p>
+        <h1>Просимо вибачення, ми не знайшли сторінку, яку ви шукали.</h1>
+        <p>Але все корисне — на місці.</p>
+        <div class="error-search">
+            <a class="btn" href="{{@site.url}}">Головна сторінка блогу</a>
+            <div class="search" data-ghost-search>
+                Пошук {{> "search-toggle"}}
+            </div>
+        </div>
+    </main>
+
+    {{>"components/trend-posts"}}
+
+    {{> "cta"}}
+</main>

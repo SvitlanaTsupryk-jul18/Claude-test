@@ -1,0 +1,22 @@
+{{!--
+    Parameters:
+    * postListStyle (list, grid)
+--}}
+
+<section class="posts gh-outer">
+    <div class="{{#if postListStyle}}{{postListStyle}}{{else}}line{{/if}} gh-inner">
+        {{#if title}}
+        <h2 class="title-small">
+            {{title}}
+        </h2>
+        {{/if}}
+        <main class="gh-main">
+            <div class="post-list">
+                {{#foreach posts include="tags"}}
+                    {{> "components/post-card"}}
+                {{/foreach}}
+            </div>
+            {{pagination}}
+        </main>
+    </div>
+</section>

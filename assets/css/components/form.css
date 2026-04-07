@@ -1,0 +1,143 @@
+/* ── Forms ────────── */
+/*
+
+1. Subscribe form on first screen of main pages
+
+*/
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: var(--color-font) !important;
+  caret-color: var(--color-main);
+  transition: background-color 9999s ease-in-out 0s; /* delay browser override */
+}
+
+.subscribe-form {
+  background-color: var(--color-lighter-gray);
+  padding: 32px 24px;
+  border-radius: 32px;
+  margin-top: 32px;
+
+  .h3 {
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    padding-bottom: 16px;
+    font-weight: 500;
+    color: var(--color-font);
+    font-weight: 500;
+    letter-spacing: -0.48px;
+    line-height: 2.8rem;
+    max-width: 380px;
+  }
+
+  .subscribe-inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    line-height: normal;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    border-bottom: var(--border-divider);
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border-bottom-color: var(--color-main);
+    }
+  }
+
+  .btn {
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    padding: 1.2rem 2rem;
+    margin: 1.6rem auto;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  p {
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 200;
+    color: var(--color-grey-line);
+
+    a {
+      color: var(--color-grey-line);
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--color-main);
+      }
+    }
+  }
+
+  .tnx-msg {
+    display: none;
+  }
+
+  &.tnx {
+    & > *:not(.tnx-msg) {
+      display: none;
+    }
+
+    .tnx-msg {
+      display: block;
+
+      .checkmark {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .subscribe-form {
+    padding: 32px 48px;
+
+    h3 {
+      font-size: 2.4rem;
+      line-height: 3.2rem;
+    }
+
+    .subscribe-inner {
+      flex-direction: row;
+      padding-bottom: 6px;
+      border-bottom: var(--border-divider);
+    }
+
+    label {
+      width: 100%;
+    }
+
+    input {
+      padding: 1.6rem 0;
+      border-bottom: none;
+    }
+
+    .btn {
+      width: fit-content;
+      height: fit-content;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.2rem;
+      padding-top: 1.4rem;
+      line-height: 1.8rem;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .subscribe-form {
+    margin-top: auto;
+  }
+}

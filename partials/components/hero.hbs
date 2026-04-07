@@ -1,0 +1,21 @@
+<section class="gh-outer">
+    <div class="hero gh-inner">
+        <h2 class="title-small">актуальне</h2>
+        <div class="hero-inner">
+            {{!-- {{#get "posts" filter="featured:true" include="authors,tags" limit="3"}} --}}
+            {{#get "posts" include="authors,tags" limit="3" order="featured desc, published_at desc"}}
+            <div>
+                {{#foreach posts limit="1"}}
+                {{> "components/post-card" imageSizes="(min-width: 1400px) 720px, (min-width: 1024px) 50vw, (min-width: 768px) 100vw, calc(100vw - 32px)" priority=true is_first=true}}
+                {{/foreach}}
+            </div>
+            <div class="list">
+                {{#foreach posts from="2" limit="2"}}
+                {{> "components/post-card" priority=true imageSizes="(min-width: 1024px) 170px, clamp(64px, 15vw, 170px)"}}
+                {{/foreach}}
+                {{>"components/form"}}
+            </div>
+            {{/get}}
+        </div>
+    </div>
+</section>

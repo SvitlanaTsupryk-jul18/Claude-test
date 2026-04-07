@@ -1,0 +1,69 @@
+{{!< default}}{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+
+{{#contentFor "authorTitle"}}{{#author}}{{#if meta_title}}{{meta_title}}{{else}}{{name}} автор блогу | {{@site.title}}{{/if}}{{/author}}{{/contentFor}}
+<main class="gh-main gh-outer">
+
+    {{#author}}
+    <div class="author gh-inner">
+
+        {{> "breadcrumb"}}
+
+        <section class="author-hero">
+            {{#if cover_image}}
+            <img class="author-hero-img" srcset="{{img_url cover_image size="s" format="webp"}} 320w,
+                {{img_url cover_image size="m" format="webp"}} 600w" sizes="(min-width: 768px) 128px, 320px"
+                src="{{img_url cover_image size="s"}}" alt="{{name}}" fetchpriority="high" decoding="async" width="320"
+                height="320">
+            {{else}}
+            <img class="author-hero-img" src="{{asset "images/default-author.webp"}}" alt="{{name}}" width="320"
+                height="320" fetchpriority="high">
+            {{/if}}
+            <h1> {{name}}</h1>
+            {{#if location}}
+            <p class="author-hero-position">{{location}}</p>
+            {{/if}}
+
+            {{#if website}}
+            <a href={{website}} class="author-ln">
+                {{> "icons/linkedin"}} <span>LinkedIn</span>
+            </a>
+            {{/if}}
+
+            {{#if bio}}
+            <p class="author-hero-bio">{{bio}}</p>
+            {{/if}}
+        </section>
+        {{/author}}
+
+        {{> "components/post-list-numbered" title="Статті автора"}}
+
+        {{#get "posts" include="authors,tags" author=slug filter="visibility:public" fields="title,url,slug,published_at,html,primary_tag" limit="4" as |recomend| }}
+        {{#if recomend}}
+        {{> "components/short-posts" posts=recomend title="Рекомендовані статті"}}
+        {{/if}}
+        {{/get}}
+    </div>
+</main>
+
+{{> "cta"}}
+
+{{#author}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "sameAs": [
+        {{#if website}}"{{website}}"{{/if}}
+    ],
+    "name": "{{name}}",
+    "url": "{{url absolute="true"}}",
+    "mainEntityOfPage": "{{url absolute="true"}}",
+    "description": "{{meta_description}}",
+    "worksFor": {
+        "@type": "Organization",
+        "name": "Checkbox",
+        "url": "https://checkbox.ua/"
+    }
+}
+</script>
+{{/author}}

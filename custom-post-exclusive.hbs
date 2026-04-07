@@ -1,0 +1,137 @@
+{{!< default}}{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+
+{{#contentFor "styles"}}
+    <link rel="stylesheet" type="text/css" href="{{asset "public/cards.min.css" has_min="true"}}">
+{{/contentFor}}
+
+{{#post}}
+<main class="gh-main gh-outer">
+    <div class="gh-inner">
+
+        {{> "components/toc"}}
+
+        {{> "breadcrumb"}}
+
+        <article class="post post-exclusive {{post_class}}">
+            <section class="post-hero">
+                {{#if feature_image}}
+                <figure class="post-hero-img">
+                    <img srcset="{{img_url feature_image size="s" format="webp"}} 320w,
+                        {{img_url feature_image size="m" format="webp"}} 600w,
+                        {{img_url feature_image size="l" format="webp"}} 960w,
+                        {{img_url feature_image size="xl" format="webp"}} 1296w,
+                        {{img_url feature_image size="xxl"}} 2000w" 
+                        sizes="(min-width: 1296px) 1296px, calc(100vw - 32px)"
+                        src="{{img_url feature_image size="xl"}}"
+                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                        fetchpriority="high"
+                        decoding="async"
+                        width="1296" 
+                        height="920">
+                </figure>
+                {{/if}}
+                <div class="post-hero-info">
+                    <div class="post-hero-tags">
+                        {{#if primary_tag}}
+                        <a class="post-tag" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+                        {{#foreach tags visibility="internal"}}
+                        <a class="post-tag post-tag--internal"
+                            href="{{../primary_tag.url}}?filter={{slug}}"><span>{{name}}</span></a>
+                        {{/foreach}}
+                        {{/if}}
+                    </div>
+                    <h1>{{title}}</h1>
+
+                    {{> "components/share-socials"}}
+
+                    {{#primary_author}}
+                    <a class="post-hero-author" href="{{url}}">
+                        {{#if profile_image}}
+                        <img class="author-card-img" src="{{img_url cover_image size="s"}}" alt="{{name}}">
+                        {{else}}
+                        <img src="{{asset "images/default-author.webp"}}" alt="{{name}}">
+                        {{/if}}
+                        <span>{{name}}</span>
+                    </a>
+                    {{/primary_author}}
+                    <p class="post-hero-meta">
+                        {{> components/date-time updated=true}}
+                    </p>
+                </div>
+            </section>
+            <div class="post-content-wrapper">
+                <aside class="post-sidebar"></aside>
+                <section class="post-content">
+                    {{content}}
+                    <div class="post-author">
+                        <p class="title-small">Автор</p>
+                        {{#primary_author}}
+                        {{> "components/author-card"}}
+                        {{/primary_author}}
+                    </div>
+                    <div class="post-share">
+                        <p class="h3">Сподобалася стаття? Поділіться нею з друзями!</p>
+                        {{> "components/share-socials"}}
+                    </div>
+                </section>
+            </div>
+        </article>
+    </div>
+</main>
+{{/post}}
+
+{{#get "posts" include="authors,tags" filter="tags:[{{post.tags}}]+id:-{{post.id}}+visibility:public"
+fields="title,url,slug,published_at,html,primary_tag" limit="4" as |recomend| }}
+{{#if recomend}}
+{{> "components/short-posts" posts=recomend title="Рекомендовані статті"}}
+{{/if}}
+{{/get}}
+
+{{> "cta"}}
+{{#post}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{@site.title}}",
+        "url": "{{@site.url}}/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{@site.logo}}",
+            "width": 100,
+            "height": 16
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "{{primary_author.name}}",
+        {{#if primary_author.profile_image}}
+        "image": {
+            "@type": "ImageObject",
+            "url": "{{primary_author.profile_image}}"
+        },
+        {{/if}}
+        "url": "{{primary_author.url}}",
+        "sameAs": [
+            {{#if primary_author.website}}"{{primary_author.website}}"{{/if}}
+        ]
+    },
+    "headline": "{{meta_title}}",
+    "url": "{{url absolute="true"}}",
+    "datePublished": "{{date format="YYYY-MM-DDTHH:mm:ss.SSSZ"}}",
+    "dateModified": "{{date updated_at format="YYYY-MM-DDTHH:mm:ss.SSSZ"}}",
+    {{#if feature_image}}
+    "image": {
+        "@type": "ImageObject",
+        "url": "{{img_url feature_image absolute="true"}}",
+        "width": 1296,
+        "height": 920
+    },
+    {{/if}}
+    "description": "{{meta_description}}",
+    "mainEntityOfPage": "{{url absolute="true"}}"
+}
+</script>
+{{/post}}

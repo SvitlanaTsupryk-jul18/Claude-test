@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+
+<head>
+
+    {{!-- Custom meta by SEO requirments- advanced meta is output with {{ghost_head}} below --}}
+    <title>
+        {{~#is "post"~}}
+        {{#post}}{{#if meta_title}}{{meta_title}}{{else}}{{title}} | {{@site.title}}{{/if}}{{/post}}
+        {{~else is "tag"~}}
+        {{#tag}}{{#if meta_title}}{{meta_title}}{{else}}{{name}} | {{@site.title}}{{/if}}{{/tag}}
+        {{#if pagination.prev}} — № {{pagination.page}}{{/if}}
+        {{~else is "author"~}}
+        {{{block "authorTitle"}}}
+        {{#if pagination.prev}} — № {{pagination.page}}{{/if}}
+        {{~else~}}
+        {{#if meta_title}}{{meta_title}}{{else}}{{@site.title}}{{/if}}
+        {{#if pagination.prev}} — № {{pagination.page}}{{/if}}
+        {{~/is~}}
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{!-- Fonts are preloaded and defined in the default template to avoid layout shift --}}
+    {{> "typography/fonts"}}
+
+
+    {{!-- Preload main styles and scripts for better performance --}}
+    <link rel="preload" as="style" href="{{asset "built/screen.css"}}">
+    <link rel="preload" as="script" href="{{asset "built/source.js"}}">
+
+    {{!-- Theme assets - use the {{asset}} helper to reference styles & scripts, this will take care of caching and cache-busting automatically --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}">
+
+    {{!-- Meta data for Open Graph --}}
+
+    {{> "open-graph"}}
+
+    {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
+    {{ghost_head}}
+
+    {{#is "paged"}}
+    <script>
+        var existingCanonical = document.querySelector('link[rel="canonical"]');
+        if (existingCanonical) {
+            existingCanonical.remove();
+        }
+    </script>
+    {{/is}}
+
+    {{#is "paged"}}
+    {{#is "tag"}}{{#tag}}
+    <link rel="canonical" href="{{url absolute="true"}}" />{{/tag}}{{/is}}
+    {{#is "author"}}{{#primary_author}}
+    <link rel="canonical" href="{{url absolute="true"}}" />{{/primary_author}}{{/is}}
+    {{#is "index"}}
+    <link rel="canonical" href="{{@site.url}}/" />{{/is}}
+    {{/is}}
+
+    {{{block "styles"}}}
+</head>
+
+<body class="{{body_class}}">
+    <div class="gh-viewport">
+
+        {{> "components/navigation" navigationLayout="Logo on the left"}}
+
+        {{{body}}}
+
+        {{> "footer"}}
+
+    </div>
+
+    {{!-- Ghost outputs required functional scripts with this tag, it should always be the last thing before the closing body tag --}}
+    {{ghost_foot}}
+
+    {{!-- Main theme scripts --}}
+    <script src="{{asset "built/source.js"}}" defer></script>
+
+    <!-- Google Tag Manager -->
+    <script>
+        function loadGTM() {
+        if (window.GTM_ID) {
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer',window.GTM_ID);
+        }
+        }
+
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadGTM, {
+                timeout: 3000
+            });
+        } else {
+            window.addEventListener('load', function () {
+                setTimeout(loadGTM, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

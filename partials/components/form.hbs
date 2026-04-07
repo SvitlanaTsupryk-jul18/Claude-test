@@ -1,0 +1,57 @@
+<div class="subscribe-form">
+  <form name="subscribeForm" id="subscribeForm">
+    <p class="h3">Отримуйте найсвіжіші новини з блогу Checkbox</p>
+    <div class="subscribe-inner">
+      <label>
+        <input name="email" type="email" placeholder="Введіть email адресу" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+">
+      </label>
+      <button class="btn btn--light" type="submit">Підписатися</button>
+    </div>
+    <p>Будь-ласка, ознайомтеся з нашою <a href="https://checkbox.ua/policy/">Політикою конфіденційності</a>.</p>
+  </form>
+  <div class="tnx-msg">
+    {{> "icons/checkmark"}}
+    <p class="h3">Дякуємо!</>
+    <p>Тепер ви будете першими отримувати наші нові відео та статті.</p>
+  </div>
+<div id="turnstile-container"></div>
+</div>
+<style>
+  /* Контейнер для Turnstile (невидимий) */
+#turnstile-container {
+  display: none;
+}
+
+/* Базовий стан кнопки при завантаженні */
+.is-loading {
+  color: transparent !important; /* Приховуємо текст */
+  pointer-events: none;
+  position: relative;
+  min-width: 120px; /* Щоб кнопка не "стрибала" за розміром */
+}
+
+/* Створення самого спінера */
+.is-loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff; /* Колір "рухомої" частини */
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Якщо кнопка світла, зробимо спінер темним */
+.is-loading.light-btn::after {
+  border-color: rgba(0, 0, 0, 0.1);
+  border-top-color: #000;
+}
+
+</style>

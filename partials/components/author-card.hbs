@@ -1,0 +1,20 @@
+<a href="{{url}}" class="author-card">
+    <div class="author-card-img">
+        {{#if cover_image}}
+        <img src="{{img_url cover_image size="s"}}" alt="{{name}}" loading="lazy">
+        {{else}}
+        <img src="{{asset "images/default-author.webp"}}" alt="{{name}}" loading="lazy">
+        {{/if}}
+    </div>
+    <div class="author-card-info">
+        <p class="h4">
+            {{name}}
+        </p>
+        {{#if location}}
+        <p class="author-card-position">{{location}}</p>
+        {{/if}}
+        {{#if bio}}
+        <p class="author-card-bio">{{bio}}</p>
+        {{/if}}
+    </div>
+</a>

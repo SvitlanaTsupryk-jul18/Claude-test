@@ -1,0 +1,15 @@
+<nav class="pagination" role="navigation">
+    <a class="prev-next {{#unless prev}}disabled{{/unless}}" 
+       href="{{#if prev}}{{page_url prev}}{{else}}#{{/if}}" aria-label="Попередня сторінка">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">    <path d="M6.52341 9.16689L10.9934 4.69689L9.81508 3.51855L3.33342 10.0002L9.81508 16.4819L10.9934 15.3036L6.52341 10.8336H16.6667V9.16689H6.52341Z" fill="currentColor"/></svg><span>Попередня</span>
+    </a>
+    <div class="pagination-numbers" 
+         data-current="{{page}}" 
+         data-total="{{pages}}" 
+         data-url="{{page_url 1}}">
+    </div>
+    <a class="prev-next {{#unless next}}disabled{{/unless}}" 
+       href="{{#if next}}{{page_url next}}{{else}}#{{/if}}" aria-label="Наступна сторінка">
+        <span>Наступна</span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">    <path d="M13.4766 9.16689L9.00658 4.69689L10.1849 3.51855L16.6666 10.0002L10.1849 16.4819L9.00658 15.3036L13.4766 10.8336H3.33325V9.16689H13.4766Z" fill="currentColor"/></svg>
+    </a>
+</nav>

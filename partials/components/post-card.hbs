@@ -1,0 +1,51 @@
+{{!--
+    Parameters:
+    * postListStyle (list, grid)
+    * title
+    * loadPosts
+    * tagUrl
+    * priority
+    * is_first
+    * isVideo - for first card image sizes in video section on main page
+--}}
+
+
+<article
+    class="post-card {{post_class}} {{#if is_first}}post-card-first{{/if}} {{#foreach tags visibility="internal"}}tag-{{slug}} {{/foreach}}"
+    data-tags="{{#foreach tags visibility="internal"}}{{slug}} {{/foreach}}">
+    <a href="{{url}}" aria-label="{{title}}">
+        {{#if feature_image}}
+        <figure class="post-card-img">
+            <img srcset="{{img_url feature_image size="xs" format="webp"}} 160w,
+                        {{img_url feature_image size="s" format="webp"}} 320w,
+                        {{img_url feature_image size="m" format="webp"}} 600w,
+                        {{img_url feature_image size="l" format="webp"}} 960w,
+                        {{img_url feature_image size="xl" format="webp"}} 1296w"
+                sizes="{{#if isVideo}}{{#if @first}}(min-width: 1296px) 1296px, calc(100vw - 32px){{else}}(min-width: 1024px) 380px, (min-width: 500px) 33vw, calc(100vw - 32px){{/if}}{{else}}{{#if imageSizes}}{{imageSizes}}{{else}}(min-width: 1024px) 310px, (min-width: 500px) calc(50vw - 32px), calc(100vw - 32px){{/if}}{{/if}}"
+                src="{{img_url feature_image size="m"}}"
+                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                {{#if priority}}fetchpriority="high" {{else}}loading="lazy" {{/if}} {{#if is_first}}width="636"
+                height="720" decoding="async" {{/if}}>
+        </figure>
+        {{/if}}
+    </a>
+    <div class="post-card-info">
+        {{#if primary_tag}}
+        <a class="post-tag post-card-tag tag-{{slug}}" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+        {{/if}}
+        <h3 class="post-card-title">
+            <a href="{{url}}" title="{{title}}" aria-label="{{title}}">{{title}}</a>
+        </h3>
+        {{#if is_first}}
+        {{#if excerpt}}
+        <p class="post-card-excerpt">{{excerpt characters="180"}}</p>
+        {{/if}}
+        {{/if}}
+        <div class="post-card-meta">
+            {{#primary_author}}
+            <a href="{{url}}" class="post-card-author">{{name}}</a>
+            {{/primary_author}}
+            {{> components/date-time}}
+        </div>
+    </div>
+</article>

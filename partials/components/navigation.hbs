@@ -1,0 +1,41 @@
+<header id="gh-navigation" class="gh-navigation is-left-logo gh-outer">
+    <div class="gh-navigation-inner gh-inner">
+        <div class="gh-navigation-brand">
+            <div class="gh-navigation-main">
+                <a class="gh-navigation-logo is-title" href="{{@custom.main_site_url}}">
+                    <img src="{{asset "images/logo-icon.svg"}}" alt="{{@site.title}}" width="100" height="16">
+                </a>
+                <span>|</span>
+                {{#is "home, index"}}
+                <h1 class="gh-navigation-logo logo-blog">
+                    <a class="gh-navigation-logo logo-blog" href="{{@site.url}}">
+                        Blog
+                    </a>
+                </h1>
+                {{else}}
+                <a class="gh-navigation-logo logo-blog" href="{{@site.url}}">
+                    Blog
+                </a>
+                {{/is}}
+            </div>
+            {{> "search-toggle"}}
+            <button class="gh-burger gh-icon-button" aria-label="Menu">
+                {{> "icons/burger"}}
+                {{> "icons/close"}}
+            </button>
+        </div>
+
+        <nav class="gh-navigation-menu">
+            {{navigation}}
+        </nav>
+
+        <div class="gh-navigation-actions">
+            {{> "search-toggle"}}
+            <div class="gh-navigation-buttons">
+                <a class="gh-button btn" href="https://my.checkbox.ua/auth/registration">Спробувати Checkbox</a>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="gh-navigation-placeholder"></div>

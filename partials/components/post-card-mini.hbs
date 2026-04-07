@@ -1,0 +1,26 @@
+{{!--
+    Parameters:
+    * postListStyle (list, grid)
+    * title
+    * loadPosts
+    * tagUrl
+    * first_screen
+    * first
+--}}
+
+<article class="post-card post-card-mini tag-{{slug}}">
+    <div class="post-card-info">
+        {{#if primary_tag}}
+        <a class="post-tag tag-{{post.primary_tag.slug}}" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+        {{/if}}
+        <p class="post-card-title">
+            <a href="{{post.url}}" title="{{title}}" aria-label="{{title}}">{{title}}</a>
+        </p>
+        <div class="post-card-meta">
+            {{#post.primary_author}}
+            <a href="{{url}}" class="post-card-author">{{name}}</a>
+            {{/post.primary_author}}
+            {{> components/date-time }}
+        </div>
+    </div>
+</article>

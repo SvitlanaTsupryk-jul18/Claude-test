@@ -1,0 +1,14 @@
+<section class="trend gh-outer">
+    <div class="line gh-inner">
+        {{#is "post"}}
+        <p class="title-small">{{title}}</p>
+        {{else}}
+        <h2 class="title-small">{{title}}</h2>
+        {{/is}}
+        <div class="post-list trend-list">
+            {{#foreach posts}}
+            {{> "components/post-card-mini" post=.}}
+            {{/foreach}}
+        </div>
+    </div>
+</section>

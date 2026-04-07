@@ -1,0 +1,51 @@
+{{!--
+    Parameters:
+    * postListStyle (list, grid)
+    * title
+    * loadPosts
+    * tagUrl - link to tag page
+    * isVideo - for first card image sizes in video section on main page
+--}}
+
+<section class="posts gh-outer">
+    <div class="{{#if postListStyle}}{{postListStyle}}{{else}}line{{/if}} gh-inner">
+        {{#if title}}
+        <h2 class="title-small">
+            {{title}}
+            {{#if tagUrl}}
+            <span>|</span><a class="posts-tag-link" href="{{@site.url}}/tag/{{tagUrl}}" class="btn-link">переглянути всі</a>
+            {{/if}}
+        </h2>
+        {{/if}}
+        <div class="gh-main">
+            <div class="post-list {{#if loadPosts}}list-load-more{{/if}}{{#if isIndex}}posts-list-load{{/if}}">
+                {{#foreach posts}}
+                {{> "components/post-card" imageSizes=../imageSizes isVideo=../isVideo}}
+                {{/foreach}}
+            </div>
+            {{#if loadPosts}}
+            <button class="btn btn--icon load-more-button" data-base-url="{{@site.url}}" data-next-page="{{nextPage}}"
+                data-limit="{{loadPosts}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <rect class="line-top" x="2" y="2" width="16" height="4" rx="1.5" fill="#161B25" />
+                    <rect class="line-mid" x="2" y="8" width="16" height="4" rx="1.5" fill="#161B25" />
+                    <rect class="line-bot" x="2" y="14" width="16" height="4" rx="1.5" fill="#161B25" />
+                </svg>
+                Показати більше
+            </button>
+            {{/if}}
+            {{#if isIndex}}
+            {{#if pagination.next}}
+            <button class="btn btn--icon load-more" data-next-page="{{page_url pagination.next}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <rect class="line-top" x="2" y="2" width="16" height="4" rx="1.5" fill="#161B25" />
+                    <rect class="line-mid" x="2" y="8" width="16" height="4" rx="1.5" fill="#161B25" />
+                    <rect class="line-bot" x="2" y="14" width="16" height="4" rx="1.5" fill="#161B25" />
+                </svg>
+                Показати більше
+            </button>
+            {{/if}}
+            {{/if}}
+        </div>
+    </div>
+</section>

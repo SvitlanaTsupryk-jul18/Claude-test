@@ -1,0 +1,9 @@
+{{#get "posts" 
+    include="authors,tags" 
+    filter="tag:hash-trendy+visibility:public"
+    fields="title,url,slug,published_at,html,primary_tag,primary_author" 
+    limit="4" 
+    as |trends|
+}}
+{{> "components/short-posts" posts=trends title="Трендові статті"}}
+{{/get}}

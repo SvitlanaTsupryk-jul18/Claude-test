@@ -1,0 +1,70 @@
+{{!< default}} {{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+
+<main class="gh-main gh-outer">
+    {{#tag}}
+    <div class="gh-inner">
+        {{> "breadcrumb"}}
+
+        <h1 class="">{{name}}</h1>
+        {{!-- Фільтри (генеруються через JS) --}}
+        <ul class="all-tags-list">
+            <li>
+                <button class="filter-btn active" data-filter="all">
+                    Всі <span class="posts-count" data-count="all">0</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <section class="posts gh-outer">
+        <div class="grid gh-inner">
+            <h2 class="title-small" id="current-filter">Статті рубрики</h2>
+            <div class="gh-main">
+                <div class="post-list" id="post-feed">
+                    {{#get "posts" filter="tag:{{slug}}" limit="100" include="tags,authors"}}
+                    {{#foreach posts}}
+                    <div class="post-card-wrapper"
+                        data-tags="{{#foreach tags visibility="internal"}}{{slug}} {{/foreach}}"
+                        data-index="{{@index}}">
+                        {{> "components/post-card"}}
+                    </div>
+                    {{/foreach}}
+                    {{/get}}
+                </div>
+                {{!-- Контейнер для цифр пагінації (керується JS) --}}
+                <nav class="pagination custom-pagination" id="pagination-numbers"></nav>
+            </div>
+        </div>
+    </section>
+    {{/tag}}
+</main>
+
+{{> "components/trend-posts"}}
+
+{{#get "posts" limit="6" include="tags,authors"}}
+<div class="all-posts-list">
+    {{> "components/post-list" posts=posts postListStyle="list" title="Найсвіжіше" loadPosts="6" nextPage="2" imageSizes="240px"}}
+</div>
+{{/get}}
+
+{{> "cta"}}
+
+{{#tag}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "{{name}}",
+  "url": "{{url absolute="true"}}",
+  "description": "{{meta_description}}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Checkbox",
+    "url": "https://checkbox.ua/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{@site.logo}}"
+    }
+  }
+}
+</script>
+{{/tag}}

@@ -1,0 +1,204 @@
+/* Index page  + small components
+/* ------------------------------------------------------------
+
+1. Index page
+2. Banner on index page
+3. Cta bottom
+
+*/
+
+/* 1. Index page */
+
+.hero-inner > div {
+  padding-bottom: 32px;
+  border-bottom: var(--border-divider);
+}
+
+@media (min-width: 1024px) {
+  .hero-inner {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(16px, 3vw, 40px);
+    border-bottom: var(--border-divider);
+  }
+  .hero-inner > div {
+    width: 50%;
+    padding-bottom: 64px;
+    border: none;
+  }
+}
+
+/* 2. Banner on index page */
+
+.banner {
+  height: 650px;
+  border-radius: 32px;
+  background: var(--color-main);
+  color: var(--color-white);
+  padding: 32px 24px;
+  margin: 24px auto;
+  background-image: var(--bg-mobile);
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center;
+
+  img {
+    margin: 0 auto 80px;
+  }
+
+  .h2 {
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 3.4rem;
+    padding-bottom: 2rem;
+    line-height: 1.1;
+  }
+
+  p {
+    color: rgba(238, 247, 255, 0.8);
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding-bottom: 3.2rem;
+  }
+
+  .btn {
+    display: inline-block;
+
+    .download-icon {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .download-icon .arrow {
+      transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+    }
+
+    &:hover .arrow {
+      animation: moveDownUp 0.6s infinite ease-in-out;
+    }
+  }
+}
+
+@keyframes moveDownUp {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.banner-wrapper + .gh-outer > .gh-inner {
+  border-top: var(--border-divider);
+}
+
+@media (min-width: 500px) {
+  .banner {
+    background-size: 70%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .banner {
+    padding: 64px;
+    width: 100%;
+    height: fit-content;
+    margin: 64px auto;
+    background-image: var(--bg-desktop);
+    background-size: 50%;
+    background-position: center right;
+    text-align: left;
+
+    .banner-content{
+      max-width: 440px;
+    }
+
+    img {
+      display: none;
+    }
+
+    .h2 {
+      font-size: 4.8rem;
+      padding-bottom: 1.6rem;
+    }
+
+    p {
+      padding-bottom: 2rem;
+    }
+  }
+}
+
+/* 3. Cta bottom */
+
+.cta {
+  padding: 100px 16px;
+  background: var(--color-main);
+  color: var(--color-white);
+  text-align: center;
+
+  .gh-inner {
+    margin-top: 0;
+  }
+
+  img {
+    display: inline-block;
+  }
+
+  .h2 {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 4rem;
+    padding: 3.2rem 0;
+    letter-spacing: -2%;
+    line-height: 1.2;
+  }
+
+  .cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  p {
+    font-size: 1.6rem;
+    font-family: var(--font-title);
+    padding: 0 32px;
+  }
+
+  .btn {
+    margin: 40px auto;
+    width: fit-content;
+  }
+
+  .cta-bottom {
+    font-size: 1.4rem;
+    padding-top: 2rem;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.48);
+
+    svg {
+      margin-right: 8px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .cta {
+    padding: 128px 0;
+
+    .h2 {
+      font-size: 5.4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+  }
+}

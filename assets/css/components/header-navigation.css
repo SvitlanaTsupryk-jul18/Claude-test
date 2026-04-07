@@ -1,0 +1,451 @@
+/* Navigation - Old native styles for ghost navigation from admin panel
+/* ---------------------------------------------------------- */
+
+.gh-navigation {
+  height: 80px;
+  width: 100%;
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  font-weight: 400;
+  background-color: var(--color-white);
+  color: var(--color-font);
+  letter-spacing: -2%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+
+  .gh-inner {
+    margin: 0 auto;
+  }
+}
+
+.gh-navigation-placeholder {
+  height: 80px;
+}
+
+.gh-navigation-inner {
+  display: grid;
+  grid-auto-flow: row dense;
+  column-gap: 4px;
+  align-items: center;
+  height: 100%;
+  margin-top: 0;
+  border-bottom: var(--border-divider);
+}
+
+.gh-navigation-brand {
+  line-height: 1;
+}
+
+.gh-navigation-main {
+  display: flex;
+  position: relative;
+
+  span {
+    display: inline-block;
+    margin: 2px 8px 0;
+    color: var(--color-grey-line);
+  }
+}
+
+.gh-navigation-logo {
+  /* position: relative; */
+  font-family: var(--gh-font-heading, var(--font-sans));
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: all 0.2s;
+
+  &:hover {
+    color: var(--color-main);
+    transform: scale(1.05);
+  }
+}
+
+.gh-navigation-logo img {
+  max-height: 40px;
+}
+
+.gh-navigation-menu {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.gh-navigation .nav {
+  display: inline-flex;
+  gap: 24px;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  list-style: none;
+
+  /* hover styles */
+
+  li {
+    position: relative;
+    display: block;
+    padding: 6px 0;
+
+    a {
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--color-font);
+        transition: all 0.3s;
+        opacity: 0;
+      }
+
+      &:hover {
+        &:after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.gh-navigation .gh-more-toggle {
+  position: relative;
+  margin: 0 -6px;
+  font-size: inherit;
+  text-transform: inherit;
+}
+
+.gh-navigation .gh-more-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.gh-navigation-actions {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: var(--background-color);
+}
+
+.gh-navigation.has-accent-color .gh-navigation-actions {
+  background-color: var(--ghost-accent-color);
+}
+
+.gh-navigation-buttons .btn {
+  padding: 1rem 1.8rem;
+  color: var(--color-white);
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  font-weight: 400;
+}
+
+.gh-navigation-members {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.gh-navigation-members .gh-button {
+  font-size: inherit;
+  font-weight: 600;
+}
+
+.gh-search {
+  margin-right: -2px;
+  margin-left: -2px;
+}
+
+@media (max-width: 767px) {
+  .gh-navigation-logo {
+    white-space: normal;
+  }
+
+  .gh-navigation-members {
+    flex-direction: column-reverse;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .gh-navigation-actions .gh-search {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .gh-navigation-brand .gh-search {
+    display: none;
+  }
+
+  .gh-navigation:not(.is-dropdown-loaded) .gh-navigation-menu .nav > li {
+    opacity: 0;
+  }
+}
+
+/* Hack hide*/
+@media (min-width: 1240px) {
+  .gh-navigation .nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+/* 6.1. Navigation styles */
+
+.gh-navigation.has-accent-color {
+  background-color: var(--ghost-accent-color);
+}
+
+.gh-navigation.has-accent-color .gh-button {
+  background-color: #fff;
+  color: #15171a;
+}
+
+/* 6.2. Navigation layouts */
+
+/*
+======================================================================
+LOGO   Home About Collection Author Portal             Login Subscribe
+======================================================================
+*/
+
+.gh-navigation.is-left-logo .gh-navigation-inner {
+  grid-template-columns: auto 1fr auto;
+}
+
+@media (min-width: 768px) {
+  .gh-navigation.is-left-logo .gh-navigation-logo:not(:has(img)) {
+    top: -2px;
+  }
+}
+
+@media (min-width: 992px) {
+  .gh-navigation.is-left-logo .gh-navigation-menu {
+    margin-right: 0px;
+    margin-left: 40px;
+  }
+}
+
+/* 6.3. Dropdown menu */
+
+.gh-dropdown {
+  position: absolute;
+  top: 100%;
+  right: -16px;
+  z-index: 90;
+  width: 200px;
+  padding: 12px 0;
+  margin-top: 24px;
+  text-align: left;
+  visibility: hidden;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.04), 0 7px 20px -5px rgb(0 0 0 / 0.15);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.2s;
+  transform: translate3d(0, 6px, 0);
+}
+
+.gh-dropdown.is-left {
+  right: auto;
+  left: -16px;
+}
+
+.is-dropdown-mega .gh-dropdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  column-gap: 40px;
+  width: auto;
+  padding: 20px 32px;
+}
+
+.is-dropdown-open .gh-dropdown {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gh-dropdown li a {
+  display: block;
+  padding: 7px 20px;
+  line-height: 1.5;
+  white-space: normal;
+  color: var(--color-font) !important;
+}
+
+.is-dropdown-mega .gh-dropdown li a {
+  padding: 8px 0;
+}
+
+/* 6.4. Mobile menu */
+
+.gh-burger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: none;
+  margin-right: -7px;
+  margin-left: 4px;
+}
+
+.gh-burger svg {
+  width: 24px;
+  height: 24px;
+}
+
+.gh-burger svg:last-child {
+  display: none;
+}
+
+.is-open .gh-burger svg:first-child {
+  display: none;
+}
+
+.is-open .gh-burger svg:last-child {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .gh-burger {
+    display: flex;
+  }
+
+  #gh-navigation {
+    height: 70px;
+  }
+
+  .gh-navigation-placeholder {
+    height: 70px;
+  }
+
+  #gh-navigation .gh-navigation-inner {
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  #gh-navigation .gh-navigation-brand {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-column-start: 1;
+    align-items: center;
+    height: 70px;
+  }
+
+  /* #gh-navigation .gh-navigation-logo {
+    font-size: 2.2rem;
+  } */
+
+  #gh-navigation .gh-navigation-menu,
+  #gh-navigation .gh-navigation-actions {
+    position: fixed;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  #gh-navigation .gh-navigation-menu {
+    transition: none;
+    transform: translateY(0);
+  }
+
+  #gh-navigation .nav {
+    gap: 20px;
+    align-items: center;
+    line-height: 1.4;
+  }
+
+  #gh-navigation .nav a {
+    font-size: 1.75rem;
+    font-weight: 600;
+    text-transform: none;
+  }
+
+  #gh-navigation .nav li {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  #gh-navigation .gh-navigation-actions {
+    text-align: center;
+  }
+
+  #gh-navigation :is(.gh-button, a[data-portal="signin"]) {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  #gh-navigation .gh-button {
+    width: 100%;
+    text-transform: none;
+  }
+
+  #gh-navigation a[data-portal="signin"] {
+    font-size: 1.75rem;
+  }
+
+  #gh-main {
+    transition: opacity 0.4s;
+  }
+
+  .is-open#gh-navigation {
+    position: fixed;
+    inset: 0;
+    z-index: 3999999;
+    height: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .is-open#gh-navigation .gh-navigation-menu,
+  .is-open#gh-navigation .gh-navigation-actions {
+    position: static;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .is-open#gh-navigation .nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .is-open#gh-navigation .nav li {
+    opacity: 1;
+    transition: transform 0.2s, opacity 0.2s;
+    transform: translateY(0);
+  }
+
+  .is-open#gh-navigation .gh-navigation-actions {
+    position: sticky;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    padding: var(--container-gap) 0;
+  }
+
+  .is-open#gh-navigation :is(.gh-button, a[data-portal="signin"]) {
+    opacity: 1;
+    transition: transform 0.4s, opacity 0.4s;
+    transition-delay: 0.2s;
+    transform: translateY(0);
+  }
+
+  .is-open#gh-navigation a[data-portal="signin"] {
+    transition-delay: 0.4s;
+  }
+
+  .is-open#gh-main {
+    opacity: 0;
+  }
+}

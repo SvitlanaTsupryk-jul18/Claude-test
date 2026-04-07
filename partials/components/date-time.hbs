@@ -1,0 +1,11 @@
+<time class="post-card-date" datetime="{{#if updated}}{{date updated_at format="YYYY-MM-DD"}}{{else}}{{date format="YYYY-MM-DD"}}{{/if}}">
+    {{#if updated}}
+        {{> "icons/updated"}}
+        {{date updated_at format="DD MMMM YYYY"}}
+    {{else}}
+        {{date format="DD MMMM YYYY"}}
+    {{/if}}
+    &nbsp;|
+</time>
+<span class="post-card-time">
+    &nbsp;{{reading_time minute=(t "1 хв. на читання") minutes=(t "% хв. на читання")}}</span>
