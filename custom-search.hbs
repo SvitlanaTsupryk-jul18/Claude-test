@@ -1,0 +1,41 @@
+{{!< default}}
+
+<main class="gh-main">
+    <div class="search-page gh-outer">
+        <div class="gh-inner">
+
+            <header class="search-header">
+                <h1 class="search-title is-title">Search</h1>
+            </header>
+
+            <form class="search-form" role="search" id="search-form">
+                <label for="search-input" class="sr-only">Search posts</label>
+                <input type="search" class="search-input" id="search-input" name="q" placeholder="Search posts…"
+                    autocomplete="off" spellcheck="false" aria-label="Search posts">
+                <button type="submit" class="btn search-btn" aria-label="Submit search">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path
+                            d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z"
+                            stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>Search</span>
+                </button>
+            </form>
+
+            <ul class="search-tag-filters all-tags-list" id="search-tag-filters"></ul>
+
+            <div id="search-results" class="search-results" aria-live="polite">
+                <p class="search-hint">Enter a keyword to search all posts.</p>
+            </div>
+
+            <nav class="pagination" id="search-pagination"></nav>
+        </div>
+    </div>
+</main>
+
+<script>
+    window.GhostSearch = {
+        siteUrl: '{{@site.url}}',
+        apiKey: '{{@custom.content_api_key}}'
+    };
+</script>

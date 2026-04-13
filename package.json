@@ -79,6 +79,11 @@
         "type": "text",
         "group": "site",
         "default": "https://checkbox.ua/"
+      },
+      "content_api_key": {
+        "type": "text",
+        "group": "site",
+        "default": "58bfd1c6061a76383a13089405"
       }
     }
   },

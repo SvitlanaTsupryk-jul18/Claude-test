@@ -86,74 +86,48 @@
 
 {{#post}}
 <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "publisher": {
-            "@type": "Organization",
-            "name": "{{@site.title}}",
-            "url": "{{@site.url}}/",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{@site.logo}}",
-                "width": 100,
-                "height": 16
-            }
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{@site.title}}",
+        "url": "{{@site.url}}/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{@site.logo}}",
+            "width": 100,
+            "height": 16
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "{{primary_author.name}}",
+        {{#if primary_author.profile_image}}
+        "image": {
+            "@type": "ImageObject",
+            "url": "{{primary_author.profile_image}}"
         },
-        "author": {
-            "@type": "Person",
-            "name": "{{primary_author.name}}",
-            {
-                {
-                    #
-                    if primary_author.profile_image
-                }
-            }
-            "image": {
-                "@type": "ImageObject",
-                "url": "{{primary_author.profile_image}}"
-            },
-            {
-                {
-                    /if}}
-                    "url": "{{primary_author.url}}",
-                    "sameAs": [{
-                            {
-                                #
-                                if primary_author.website
-                            }
-                        }
-                        "{{primary_author.website}}" {
-                            {
-                                /if}}
-                            ]
-                        },
-                        "headline": "{{meta_title}}",
-                        "url": "{{url absolute="
-                        true "}}",
-                        "datePublished": "{{date format="
-                        YYYY - MM - DDTHH: mm: ss.SSSZ "}}",
-                        "dateModified": "{{date updated_at format="
-                        YYYY - MM - DDTHH: mm: ss.SSSZ "}}",
-                        {
-                            {
-                                #
-                                if feature_image
-                            }
-                        }
-                        "image": {
-                            "@type": "ImageObject",
-                            "url": "{{img_url feature_image absolute="
-                            true "}}",
-                            "width": 616,
-                            "height": 450
-                        },
-                        {
-                            {
-                                /if}}
-                                "description": "{{meta_description}}",
-                                "mainEntityOfPage": "{{url absolute="
-                                true "}}"
-                            }
+        {{/if}}
+        "url": "{{primary_author.url}}",
+        "sameAs": [
+            {{#if primary_author.website}}"{{primary_author.website}}"{{/if}}
+        ]
+    },
+    "headline": "{{meta_title}}",
+    "url": "{{url absolute="true"}}",
+    "datePublished": "{{date format="YYYY-MM-DDTHH:mm:ss.SSSZ"}}",
+    "dateModified": "{{date updated_at format="YYYY-MM-DDTHH:mm:ss.SSSZ"}}",
+    {{#if feature_image}}
+    "image": {
+        "@type": "ImageObject",
+        "url": "{{img_url feature_image absolute="true"}}",
+        "width": 616,
+        "height": 450
+    },
+    {{/if}}
+    "description": "{{meta_description}}",
+    "mainEntityOfPage": "{{url absolute="true"}}"
+}
 </script>
 {{/post}}

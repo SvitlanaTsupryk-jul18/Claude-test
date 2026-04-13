@@ -1,6 +1,7 @@
 {{!< default}}{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
 
-{{#contentFor "authorTitle"}}{{#author}}{{#if meta_title}}{{meta_title}}{{else}}{{name}} автор блогу | {{@site.title}}{{/if}}{{/author}}{{/contentFor}}
+{{#contentFor "authorTitle"}}{{#author}}{{#if meta_title}}{{meta_title}}{{else}}{{name}} автор блогу |
+{{@site.title}}{{/if}}{{/author}}{{/contentFor}}
 <main class="gh-main gh-outer">
 
     {{#author}}
@@ -24,7 +25,7 @@
             {{/if}}
 
             {{#if website}}
-            <a href={{website}} class="author-ln">
+            <a href="{{website}}" class="author-ln">
                 {{> "icons/linkedin"}} <span>LinkedIn</span>
             </a>
             {{/if}}
@@ -49,21 +50,30 @@
 
 {{#author}}
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "sameAs": [
-        {{#if website}}"{{website}}"{{/if}}
-    ],
-    "name": "{{name}}",
-    "url": "{{url absolute="true"}}",
-    "mainEntityOfPage": "{{url absolute="true"}}",
-    "description": "{{meta_description}}",
-    "worksFor": {
-        "@type": "Organization",
-        "name": "Checkbox",
-        "url": "https://checkbox.ua/"
-    }
-}
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "sameAs": [{
+                    {
+                        #
+                        if website
+                    }
+                }
+                "{{website}}" {
+                    {
+                        /if}}
+                    ],
+                    "name": "{{name}}",
+                    "url": "{{url absolute="
+                    true "}}",
+                        "mainEntityOfPage": "{{url absolute="
+                    true "}}",
+                        "description": "{{meta_description}}",
+                        "worksFor": {
+                            "@type": "Organization",
+                            "name": "Checkbox",
+                            "url": "https://checkbox.ua/"
+                        }
+                }
 </script>
 {{/author}}
