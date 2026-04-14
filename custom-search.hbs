@@ -39,3 +39,7 @@
         apiKey: '{{@custom.content_api_key}}'
     };
 </script>
+
+{{#contentFor "scripts"}}
+<script src="{{asset "js/search.js"}}" defer></script>
+{{/contentFor}}

@@ -74,6 +74,7 @@
       }
     },
     "card_assets": false,
+    "search": false,
     "custom": {
       "main_site_url": {
         "type": "text",
@@ -83,7 +84,7 @@
       "content_api_key": {
         "type": "text",
         "group": "site",
-        "default": "58bfd1c6061a76383a13089405"
+        "default": "d97a3177ffc6027b623c390f74"
       }
     }
   },

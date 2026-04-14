@@ -54,7 +54,7 @@ function css(done) {
 function js(done) {
   pump(
     [
-      src(["assets/js/lib/*.js", "assets/js/*.js"], { sourcemaps: true }),
+      src(["assets/js/lib/*.js", "assets/js/!(search).js"], { sourcemaps: true }),
       concat("source.js"),
       uglify(),
       dest("assets/built/", { sourcemaps: "." }),
